@@ -1,48 +1,50 @@
 {% extends "base.html" %}
 
 {% block content %}
-<header>
-    <h1>{{ hotel.name }}</h1>
+<header class="bg-gray-800 text-white p-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold">{{ hotel.name }}</h1>
     <nav>
-        <a href="#about">About</a>
-        <a href="#experiences">Experiences</a>
-        <a href="#contact">Contact</a>
+        <a href="#about" class="ml-4 hover:text-gray-300">About</a>
+        <a href="#experiences" class="ml-4 hover:text-gray-300">Experiences</a>
+        <a href="#contact" class="ml-4 hover:text-gray-300">Contact</a>
     </nav>
 </header>
 
-<main>
-    <section id="hero">
-        <img src="{{ hotel.hero_url }}" alt="{{ hotel.name }}">
+<main class="container mx-auto px-4">
+    <section id="hero" class="mt-4">
+        <img src="{{ hotel.hero_url }}" alt="{{ hotel.name }}" class="w-full max-h-96 object-cover">
     </section>
 
-    <section id="packages">
-        <h2>Packages</h2>
-        <div class="package-grid">
+    <section id="packages" class="mt-8">
+        <h2 class="text-2xl font-bold mb-4">Packages</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {% for package in packages %}
-            <div class="package-card">
-                <h3>{{ package.name }}</h3>
-                <a href="{{ url_for('main.experience_details', experience_id=package.id) }}" class="btn">Details</a>
+            <div class="border border-gray-200 p-4 text-center">
+                <h3 class="text-xl font-semibold mb-2">{{ package.name }}</h3>
+                <p class="text-sm text-gray-600 mb-4">{{ package.short_description }}</p>
+                <a href="{{ url_for('main.experience_details', experience_id=package.id) }}" class="inline-block bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700">Details</a>
             </div>
             {% endfor %}
         </div>
     </section>
 
-    <section id="experiences">
-        <h2>Experiences</h2>
-        <div class="experience-grid">
+    <section id="experiences" class="mt-8">
+        <h2 class="text-2xl font-bold mb-4">Experiences</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {% for experience in experiences %}
-            <div class="experience-card">
-                <h3>{{ experience.name }}</h3>
-                <a href="{{ url_for('main.experience_details', experience_id=experience.id) }}" class="btn">Details</a>
+            <div class="border border-gray-200 p-4 text-center">
+                <h3 class="text-xl font-semibold mb-2">{{ experience.name }}</h3>
+                <p class="text-sm text-gray-600 mb-4">{{ experience.short_description }}</p>
+                <a href="{{ url_for('main.experience_details', experience_id=experience.id) }}" class="inline-block bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700">Details</a>
             </div>
             {% endfor %}
         </div>
     </section>
 
-    <section id="location-contact">
-        <div class="location-contact-container">
+    <section id="location-contact" class="mt-8">
+        <div class="flex flex-col space-y-8">
             <div id="map">
-                <h2>Location</h2>
+                <h2 class="text-2xl font-bold mb-4">Location</h2>
                 <div class="map-container">
                     <!-- Replace with actual Google Maps embed code -->
                     <iframe src="{{ hotel.map_location }}" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
@@ -50,24 +52,24 @@
             </div>
 
             <div id="contact">
-                <h2>Contact Us</h2>
-                <form>
-                    <input type="text" name="name" placeholder="Your Name" required>
-                    <input type="email" name="email" placeholder="Your Email" required>
-                    <textarea name="message" placeholder="Your Message" required></textarea>
-                    <button type="submit" class="btn">Send</button>
+                <h2 class="text-2xl font-bold mb-4">Contact Us</h2>
+                <form class="space-y-4">
+                    <input type="text" name="name" placeholder="Your Name" required class="w-full p-2 border border-gray-300 rounded">
+                    <input type="email" name="email" placeholder="Your Email" required class="w-full p-2 border border-gray-300 rounded">
+                    <textarea name="message" placeholder="Your Message" required class="w-full p-2 border border-gray-300 rounded h-32"></textarea>
+                    <button type="submit" class="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700">Send</button>
                 </form>
             </div>
         </div>
     </section>
 </main>
 
-<footer>
-    <div class="footer-content">
+<footer class="bg-gray-800 text-white mt-8 py-4">
+    <div class="container mx-auto px-4 flex justify-between items-center">
         <p>&copy; 2023 {{ hotel.name }}. All rights reserved.</p>
         <div class="social-links">
-            <a href="{{ hotel.facebook }}">Facebook</a>
-            <a href="{{ hotel.instagram }}">Instagram</a>
+            <a href="{{ hotel.facebook }}" class="ml-4 hover:text-gray-300">Facebook</a>
+            <a href="{{ hotel.instagram }}" class="ml-4 hover:text-gray-300">Instagram</a>
         </div>
     </div>
 </footer>

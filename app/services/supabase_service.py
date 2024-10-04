@@ -15,7 +15,8 @@ def get_hotel_by_slug(slug):
         'contact',
         'facebook',
         'instagram',
-        'all_images'
+        'all_images',
+        'name'
     ).eq('slug', slug).execute()
 
 def get_experiences_by_city(city_id):
