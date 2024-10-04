@@ -26,8 +26,9 @@ def hotel_page(hotel_name):
 # Add the new route for experience details
 @main_bp.route('/experience/<int:experience_id>')
 def experience_details(experience_id):
-    experience = get_experiences_by_city(experience_id)
-    if experience:
+    experience_data = get_experiences_by_city(experience_id)
+    if experience_data.data and len(experience_data.data) > 0:
+        experience = experience_data.data[0]
         return render_template('main/experience_details.html', experience=experience)
     else:
         return "Experience not found", 404

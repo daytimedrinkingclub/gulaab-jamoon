@@ -1,1 +1,84 @@
+{% extends "base.html" %}
 
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-6">{{ experience.name }}</h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div>
+            {% if experience.thumbnail %}
+                <img src="{{ experience.thumbnail }}" alt="{{ experience.name }}" class="w-full h-auto rounded-lg shadow-md">
+            {% endif %}
+        </div>
+        <div>
+            {% if experience.long_description %}
+                <p class="text-lg mb-4">{{ experience.long_description }}</p>
+            {% endif %}
+            {% if experience.rating %}
+                <div class="mb-4">
+                    <span class="font-semibold">Rating:</span> {{ experience.rating }} / 5
+                </div>
+            {% endif %}
+            {% if experience.duration %}
+                <div class="mb-4">
+                    <span class="font-semibold">Duration:</span> {{ experience.duration }}
+                </div>
+            {% endif %}
+            {% if experience.price %}
+                <div class="mb-4">
+                    <span class="font-semibold">Price:</span> {{ experience.price }}
+                </div>
+            {% endif %}
+            {% if experience.open_time and experience.close_time %}
+                <div class="mb-4">
+                    <span class="font-semibold">Open Time:</span> {{ experience.open_time }} - {{ experience.close_time }}
+                </div>
+            {% endif %}
+            {% if experience.open_days %}
+                <div class="mb-4">
+                    <span class="font-semibold">Open Days:</span> {{ experience.open_days }}
+                </div>
+            {% endif %}
+            {% if experience.entry_fee %}
+                <div class="mb-4">
+                    <span class="font-semibold">Entry Fee:</span> {{ experience.entry_fee }}
+                </div>
+            {% endif %}
+            {% if experience.payment_link %}
+                <a href="{{ experience.payment_link }}" class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition duration-300">Book Now</a>
+            {% endif %}
+        </div>
+    </div>
+
+    {% if experience.inclusions %}
+        <div class="mt-8">
+            <h2 class="text-2xl font-semibold mb-4">Inclusions</h2>
+            <ul class="list-disc list-inside">
+                {% for inclusion in experience.inclusions.split(',') %}
+                    <li>{{ inclusion.strip() }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+    {% if experience.exclusions %}
+        <div class="mt-8">
+            <h2 class="text-2xl font-semibold mb-4">Exclusions</h2>
+            <ul class="list-disc list-inside">
+                {% for exclusion in experience.exclusions.split(',') %}
+                    <li>{{ exclusion.strip() }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+    {% if experience.location_link %}
+        <div class="mt-8">
+            <h2 class="text-2xl font-semibold mb-4">Location</h2>
+            <div class="aspect-w-16 aspect-h-9">
+                <iframe src="{{ experience.location_link }}" class="w-full h-[450px] border-0" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
