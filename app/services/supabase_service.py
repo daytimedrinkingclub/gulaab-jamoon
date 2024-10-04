@@ -41,3 +41,26 @@ def get_experiences_by_city(city_id):
         'close_time',
         'type'
     ).eq('city', city_id).execute()
+
+def get_experience_by_id(experience_id):
+    return supabase.table('experience').select(
+        'id',
+        'created_at',
+        'name',
+        'city',
+        'rating',
+        'thumbnail',
+        'short_description',
+        'long_description',
+        'payment_link',
+        'duration',
+        'location_link',
+        'open_time',
+        'open_days',
+        'price',
+        'inclusions',
+        'exclusions',
+        'entry_fee',
+        'close_time',
+        'type'
+    ).eq('id', experience_id).execute()

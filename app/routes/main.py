@@ -1,6 +1,6 @@
 # File: app/routes/main.py
 from flask import Blueprint, render_template
-from app.services.supabase_service import get_hotel_by_slug, get_experiences_by_city
+from app.services.supabase_service import get_hotel_by_slug, get_experiences_by_city, get_experience_by_id
 
 main_bp = Blueprint('main', __name__)
 
@@ -23,12 +23,20 @@ def hotel_page(hotel_name):
         return render_template('main/landing_page.html', hotel=hotel, experiences=experiences, packages=packages)
     return "Hotel not found", 404
 
-# Add the new route for experience details
 @main_bp.route('/experience/<int:experience_id>')
 def experience_details(experience_id):
-    experience_data = get_experiences_by_city(experience_id)
-    if experience_data.data and len(experience_data.data) > 0:
+    experience_data = get_experience_by_id(experience_id)
+    if experience_data.data:
         experience = experience_data.data[0]
         return render_template('main/experience_details.html', experience=experience)
+    else:
+        return "Experience not found", 404
+    
+@main_bp.route('/booking/<int:experience_id>')
+def booking_page(experience_id):
+    experience_data = get_experience_by_id(experience_id)
+    if experience_data.data:
+        experience = experience_data.data[0]
+        return render_template('main/booking_page.html', experience=experience)
     else:
         return "Experience not found", 404
