@@ -1,0 +1,41 @@
+myvenv/
+venv/
+# Flask specific
+instance/
+.webassets-cache
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment variables
+.env
+
+# Database
+*.db
+*.sqlite
+
+# Logs
+*.log
+
+# IDE specific
+.vscode/
+.idea/
+
+# Windows specific
+Thumbs.db
+Desktop.ini
+
+# Flask static and templates (if you're not versioning these)
+# static/
+# templates/
+
+# Dependency directories
+node_modules/
+bower_components/
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
