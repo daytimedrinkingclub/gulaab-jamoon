@@ -1,6 +1,14 @@
 # File: app/routes/main.py
 from flask import Blueprint, render_template, abort
 from app.services.supabase_service import get_hotel_by_slug, get_experiences_by_city, get_experience_by_id
+import urllib.parse
+
+def extract_location_query(url):
+    parsed_url = urllib.parse.urlparse(url)
+    query_params = urllib.parse.parse_qs(parsed_url.query)
+    if 'q' in query_params:
+        return query_params['q'][0]
+    return url  # Return the original URL if we can't extract the query
 
 main_bp = Blueprint('main', __name__)
 
@@ -33,6 +41,8 @@ def experience_details(hotel_slug, experience_id):
     experience_data = get_experience_by_id(experience_id)
     if experience_data.data:
         experience = experience_data.data[0]
+        if experience['location_link']:
+            experience['location_link'] = extract_location_query(experience['location_link'])
         return render_template('main/experience_details.html', hotel=hotel, experience=experience)
     else:
         return abort(404, description="Experience not found")

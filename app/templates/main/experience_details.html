@@ -4,7 +4,6 @@
 {% block head %}
     {{ super() }}
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 {% endblock %}
 
@@ -14,91 +13,101 @@
 
     <main class="pt-24">
         <div class="container mx-auto px-4 py-8">
-            <h1 class="text-5xl font-serif font-bold text-blue-800 mb-8">{{ experience.name }}</h1>
+            <h1 class="text-4xl font-serif font-bold text-blue-800 mb-8">{{ experience.name }}</h1>
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <div class="lg:col-span-2">
                     {% if experience.thumbnail %}
                         <img src="{{ experience.thumbnail }}" alt="{{ experience.name }}" class="w-full h-auto rounded-lg shadow-lg mb-8">
                     {% endif %}
-                    {% if experience.long_description %}
-                        <div class="bg-white p-8 rounded-lg shadow-md">
-                            <h2 class="text-3xl font-serif font-semibold text-blue-800 mb-4">Description</h2>
-                            <p class="text-gray-700 leading-relaxed">{{ experience.long_description }}</p>
-                        </div>
-                    {% endif %}
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h2 class="text-2xl font-serif font-semibold text-blue-800 mb-4">Description</h2>
+                        <p class="text-gray-700 leading-relaxed">{{ experience.long_description }}</p>
+                    </div>
                 </div>
-                <div class="bg-white p-8 rounded-lg shadow-md">
-                    <h2 class="text-3xl font-serif font-semibold text-blue-800 mb-6">Details</h2>
-                    <table class="w-full">
-                        <tbody>
+                <div class="lg:col-span-1">
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h2 class="text-2xl font-serif font-semibold text-blue-800 mb-6">Details</h2>
+                        <ul class="space-y-4">
                             {% if experience.rating %}
-                                <tr>
-                                    <td class="py-3"><i class="fas fa-star text-yellow-500 mr-2"></i>Rating</td>
-                                    <td class="py-3 text-right font-semibold">{{ experience.rating }} / 5</td>
-                                </tr>
+                                <li class="flex items-center justify-between">
+                                    <span class="flex items-center text-gray-700">
+                                        <i class="fas fa-star text-yellow-400 mr-2"></i>Rating
+                                    </span>
+                                    <span class="font-semibold">{{ experience.rating }} / 5</span>
+                                </li>
                             {% endif %}
                             {% if experience.duration %}
-                                <tr>
-                                    <td class="py-3"><i class="far fa-clock text-blue-500 mr-2"></i>Duration</td>
-                                    <td class="py-3 text-right">{{ experience.duration }}</td>
-                                </tr>
+                                <li class="flex items-center justify-between">
+                                    <span class="flex items-center text-gray-700">
+                                        <i class="far fa-clock text-blue-500 mr-2"></i>Duration
+                                    </span>
+                                    <span>{{ experience.duration }}</span>
+                                </li>
                             {% endif %}
                             {% if experience.price %}
-                                <tr>
-                                    <td class="py-3"><i class="fas fa-tag text-green-500 mr-2"></i>Price</td>
-                                    <td class="py-3 text-right font-semibold">{{ experience.price }}</td>
-                                </tr>
+                                <li class="flex items-center justify-between">
+                                    <span class="flex items-center text-gray-700">
+                                        <i class="fas fa-tag text-green-500 mr-2"></i>Price
+                                    </span>
+                                    <span class="font-semibold">{{ experience.price }}</span>
+                                </li>
                             {% endif %}
                             {% if experience.open_time and experience.close_time %}
-                                <tr>
-                                    <td class="py-3"><i class="far fa-clock text-purple-500 mr-2"></i>Open Time</td>
-                                    <td class="py-3 text-right">{{ experience.open_time }} - {{ experience.close_time }}</td>
-                                </tr>
+                                <li class="flex items-center justify-between">
+                                    <span class="flex items-center text-gray-700">
+                                        <i class="far fa-clock text-purple-500 mr-2"></i>Open Time
+                                    </span>
+                                    <span>{{ experience.open_time }} - {{ experience.close_time }}</span>
+                                </li>
                             {% endif %}
                             {% if experience.open_days %}
-                                <tr>
-                                    <td class="py-3"><i class="far fa-calendar-alt text-indigo-500 mr-2"></i>Open Days</td>
-                                    <td class="py-3 text-right">{{ experience.open_days }}</td>
-                                </tr>
+                                <li class="flex items-center justify-between">
+                                    <span class="flex items-center text-gray-700">
+                                        <i class="far fa-calendar-alt text-indigo-500 mr-2"></i>Open Days
+                                    </span>
+                                    <span>{{ experience.open_days }}</span>
+                                </li>
                             {% endif %}
                             {% if experience.entry_fee %}
-                                <tr>
-                                    <td class="py-3"><i class="fas fa-ticket-alt text-red-500 mr-2"></i>Entry Fee</td>
-                                    <td class="py-3 text-right">{{ experience.entry_fee }}</td>
-                                </tr>
+                                <li class="flex items-center justify-between">
+                                    <span class="flex items-center text-gray-700">
+                                        <i class="fas fa-ticket-alt text-red-500 mr-2"></i>Entry Fee
+                                    </span>
+                                    <span>{{ experience.entry_fee }}</span>
+                                </li>
                             {% endif %}
-                        </tbody>
-                    </table>
-                    {% if experience.payment_link %}
-                        <div id="razorpay-button-container" class="mt-8"></div>
-                        <script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="{{ experience.payment_link }}"></script>
-                        <script>
-                            document.addEventListener('DOMContentLoaded', function() {
-                                var interval = setInterval(function() {
-                                    var button = document.querySelector('.razorpay-payment-button');
-                                    if (button) {
-                                        clearInterval(interval);
-                                        button.className = 'w-full bg-blue-800 text-white px-6 py-3 rounded-full hover:bg-blue-700 transition duration-300 text-center';
-                                        document.getElementById('razorpay-button-container').appendChild(button);
-                                    }
-                                }, 100);
-                            });
-                        </script>
-                    {% endif %}
+                        </ul>
+                        {% if experience.payment_link %}
+                            <div id="razorpay-button-container" class="mt-6"></div>
+                            <script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="{{ experience.payment_link }}"></script>
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function() {
+                                    var interval = setInterval(function() {
+                                        var button = document.querySelector('.razorpay-payment-button');
+                                        if (button) {
+                                            clearInterval(interval);
+                                            button.className = 'w-full bg-blue-800 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300 text-center';
+                                            document.getElementById('razorpay-button-container').appendChild(button);
+                                        }
+                                    }, 100);
+                                });
+                            </script>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
                 {% if experience.inclusions %}
-                    <div class="bg-white p-8 rounded-lg shadow-md">
-                        <h2 class="text-3xl font-serif font-semibold text-blue-800 mb-6 flex items-center">
-                            <i class="fas fa-check-circle text-green-500 mr-3"></i>Inclusions
+                    <div class="bg-white p-6 rounded-lg shadow-md h-full">
+                        <h2 class="text-2xl font-serif font-semibold text-blue-800 mb-4 flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>Inclusions
                         </h2>
-                        <ul class="list-none space-y-3">
+                        <ul class="space-y-2">
                             {% for inclusion in experience.inclusions.split(',') %}
                                 <li class="flex items-center text-gray-700">
-                                    <i class="fas fa-check text-green-500 mr-3"></i>{{ inclusion.strip() }}
+                                    <i class="fas fa-check text-green-500 mr-2"></i>{{ inclusion.strip() }}
                                 </li>
                             {% endfor %}
                         </ul>
@@ -106,14 +115,14 @@
                 {% endif %}
 
                 {% if experience.exclusions %}
-                    <div class="bg-white p-8 rounded-lg shadow-md">
-                        <h2 class="text-3xl font-serif font-semibold text-blue-800 mb-6 flex items-center">
-                            <i class="fas fa-times-circle text-red-500 mr-3"></i>Exclusions
+                    <div class="bg-white p-6 rounded-lg shadow-md h-full">
+                        <h2 class="text-2xl font-serif font-semibold text-blue-800 mb-4 flex items-center">
+                            <i class="fas fa-times-circle text-red-500 mr-2"></i>Exclusions
                         </h2>
-                        <ul class="list-none space-y-3">
+                        <ul class="space-y-2">
                             {% for exclusion in experience.exclusions.split(',') %}
                                 <li class="flex items-center text-gray-700">
-                                    <i class="fas fa-times text-red-500 mr-3"></i>{{ exclusion.strip() }}
+                                    <i class="fas fa-times text-red-500 mr-2"></i>{{ exclusion.strip() }}
                                 </li>
                             {% endfor %}
                         </ul>
@@ -122,13 +131,12 @@
             </div>
 
             {% if experience.location_link %}
-                <div class="mt-12">
-                    <h2 class="text-3xl font-serif font-semibold text-blue-800 mb-6 flex items-center">
-                        <i class="fas fa-map-marker-alt text-blue-500 mr-3"></i>Location
+                <div class="mt-8">
+                    <h2 class="text-2xl font-serif font-semibold text-blue-800 mb-4 flex items-center">
+                        <i class="fas fa-map-marker-alt text-blue-500 mr-2"></i>Location
                     </h2>
                     <div class="map-container rounded-lg overflow-hidden shadow-lg">
-                        {% set embed_url = experience.location_link.replace('https://maps.app.goo.gl/', 'https://www.google.com/maps/embed?pb=') %}
-                        <iframe src="{{ embed_url }}" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        {{ experience.location_link|safe }}
                     </div>
                 </div>
             {% endif %}
