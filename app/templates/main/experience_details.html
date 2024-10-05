@@ -4,48 +4,58 @@
 <div class="container mx-auto px-4 py-8">
     <h1 class="text-3xl font-bold mb-6">{{ experience.name }}</h1>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div>
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div class="lg:col-span-2">
             {% if experience.thumbnail %}
-                <img src="{{ experience.thumbnail }}" alt="{{ experience.name }}" class="w-full h-auto rounded-lg shadow-md">
+                <img src="{{ experience.thumbnail }}" alt="{{ experience.name }}" class="w-full h-auto rounded-lg shadow-md mb-6">
+            {% endif %}
+            {% if experience.long_description %}
+                <p class="text-lg mb-6">{{ experience.long_description }}</p>
             {% endif %}
         </div>
-        <div>
-            {% if experience.long_description %}
-                <p class="text-lg mb-4">{{ experience.long_description }}</p>
-            {% endif %}
-            {% if experience.rating %}
-                <div class="mb-4">
-                    <span class="font-semibold">Rating:</span> {{ experience.rating }} / 5
-                </div>
-            {% endif %}
-            {% if experience.duration %}
-                <div class="mb-4">
-                    <span class="font-semibold">Duration:</span> {{ experience.duration }}
-                </div>
-            {% endif %}
-            {% if experience.price %}
-                <div class="mb-4">
-                    <span class="font-semibold">Price:</span> {{ experience.price }}
-                </div>
-            {% endif %}
-            {% if experience.open_time and experience.close_time %}
-                <div class="mb-4">
-                    <span class="font-semibold">Open Time:</span> {{ experience.open_time }} - {{ experience.close_time }}
-                </div>
-            {% endif %}
-            {% if experience.open_days %}
-                <div class="mb-4">
-                    <span class="font-semibold">Open Days:</span> {{ experience.open_days }}
-                </div>
-            {% endif %}
-            {% if experience.entry_fee %}
-                <div class="mb-4">
-                    <span class="font-semibold">Entry Fee:</span> {{ experience.entry_fee }}
-                </div>
-            {% endif %}
+        <div class="bg-gray-100 p-6 rounded-lg shadow-md">
+            <table class="w-full">
+                <tbody>
+                    {% if experience.rating %}
+                        <tr>
+                            <td class="py-2"><i class="fas fa-star text-yellow-500 mr-2"></i>Rating</td>
+                            <td class="py-2 text-right font-semibold">{{ experience.rating }} / 5</td>
+                        </tr>
+                    {% endif %}
+                    {% if experience.duration %}
+                        <tr>
+                            <td class="py-2"><i class="far fa-clock text-blue-500 mr-2"></i>Duration</td>
+                            <td class="py-2 text-right">{{ experience.duration }}</td>
+                        </tr>
+                    {% endif %}
+                    {% if experience.price %}
+                        <tr>
+                            <td class="py-2"><i class="fas fa-tag text-green-500 mr-2"></i>Price</td>
+                            <td class="py-2 text-right font-semibold">{{ experience.price }}</td>
+                        </tr>
+                    {% endif %}
+                    {% if experience.open_time and experience.close_time %}
+                        <tr>
+                            <td class="py-2"><i class="far fa-clock text-purple-500 mr-2"></i>Open Time</td>
+                            <td class="py-2 text-right">{{ experience.open_time }} - {{ experience.close_time }}</td>
+                        </tr>
+                    {% endif %}
+                    {% if experience.open_days %}
+                        <tr>
+                            <td class="py-2"><i class="far fa-calendar-alt text-indigo-500 mr-2"></i>Open Days</td>
+                            <td class="py-2 text-right">{{ experience.open_days }}</td>
+                        </tr>
+                    {% endif %}
+                    {% if experience.entry_fee %}
+                        <tr>
+                            <td class="py-2"><i class="fas fa-ticket-alt text-red-500 mr-2"></i>Entry Fee</td>
+                            <td class="py-2 text-right">{{ experience.entry_fee }}</td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
             {% if experience.payment_link %}
-                <div id="razorpay-button-container"></div>
+                <div id="razorpay-button-container" class="mt-6"></div>
                 <script>
                     document.addEventListener('DOMContentLoaded', function() {
                         var script = document.createElement('script');
@@ -56,6 +66,7 @@
                                 var button = document.querySelector('.razorpay-payment-button');
                                 if (button) {
                                     clearInterval(interval);
+                                    button.className += ' w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded';
                                     document.getElementById('razorpay-button-container').appendChild(button);
                                 }
                             }, 100);
@@ -67,33 +78,45 @@
         </div>
     </div>
 
-    {% if experience.inclusions %}
-        <div class="mt-8">
-            <h2 class="text-2xl font-semibold mb-4">Inclusions</h2>
-            <ul class="list-disc list-inside">
-                {% for inclusion in experience.inclusions.split(',') %}
-                    <li>{{ inclusion.strip() }}</li>
-                {% endfor %}
-            </ul>
-        </div>
-    {% endif %}
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+        {% if experience.inclusions %}
+            <div class="bg-green-100 p-6 rounded-lg shadow-md">
+                <h2 class="text-2xl font-semibold mb-4 flex items-center">
+                    <i class="fas fa-check-circle text-green-500 mr-2"></i>Inclusions
+                </h2>
+                <ul class="list-none">
+                    {% for inclusion in experience.inclusions.split(',') %}
+                        <li class="mb-2 flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>{{ inclusion.strip() }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
 
-    {% if experience.exclusions %}
-        <div class="mt-8">
-            <h2 class="text-2xl font-semibold mb-4">Exclusions</h2>
-            <ul class="list-disc list-inside">
-                {% for exclusion in experience.exclusions.split(',') %}
-                    <li>{{ exclusion.strip() }}</li>
-                {% endfor %}
-            </ul>
-        </div>
-    {% endif %}
+        {% if experience.exclusions %}
+            <div class="bg-red-100 p-6 rounded-lg shadow-md">
+                <h2 class="text-2xl font-semibold mb-4 flex items-center">
+                    <i class="fas fa-times-circle text-red-500 mr-2"></i>Exclusions
+                </h2>
+                <ul class="list-none">
+                    {% for exclusion in experience.exclusions.split(',') %}
+                        <li class="mb-2 flex items-center">
+                            <i class="fas fa-times text-red-500 mr-2"></i>{{ exclusion.strip() }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    </div>
 
     {% if experience.location_link %}
         <div class="mt-8">
-            <h2 class="text-2xl font-semibold mb-4">Location</h2>
+            <h2 class="text-2xl font-semibold mb-4 flex items-center">
+                <i class="fas fa-map-marker-alt text-blue-500 mr-2"></i>Location
+            </h2>
             <div class="aspect-w-16 aspect-h-9">
-                <iframe src="{{ experience.location_link }}" class="w-full h-[450px] border-0" allowfullscreen="" loading="lazy"></iframe>
+                <iframe src="{{ experience.location_link }}" class="w-full h-[450px] border-0 rounded-lg shadow-md" allowfullscreen="" loading="lazy"></iframe>
             </div>
         </div>
     {% endif %}
