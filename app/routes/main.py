@@ -1,12 +1,12 @@
 # File: app/routes/main.py
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, abort
 from app.services.supabase_service import get_hotel_by_slug, get_experiences_by_city, get_experience_by_id
 
 main_bp = Blueprint('main', __name__)
 
-@main_bp.route('/<hotel_name>')
-def hotel_page(hotel_name):
-    hotel_data = get_hotel_by_slug(hotel_name)
+@main_bp.route('/<hotel_slug>')
+def hotel_page(hotel_slug):
+    hotel_data = get_hotel_by_slug(hotel_slug)
     if hotel_data.data:
         hotel = hotel_data.data[0]
         experiences_data = get_experiences_by_city(hotel['city'])
@@ -21,13 +21,18 @@ def hotel_page(hotel_name):
                 experiences.append(experience)
         
         return render_template('main/landing_page.html', hotel=hotel, experiences=experiences, packages=packages)
-    return "Hotel not found", 404
+    return abort(404, description="Hotel not found")
 
-@main_bp.route('/experience/<int:experience_id>')
-def experience_details(experience_id):
+@main_bp.route('/<hotel_slug>/experience/<int:experience_id>')
+def experience_details(hotel_slug, experience_id):
+    hotel_data = get_hotel_by_slug(hotel_slug)
+    if not hotel_data.data:
+        return abort(404, description="Hotel not found")
+    
+    hotel = hotel_data.data[0]
     experience_data = get_experience_by_id(experience_id)
     if experience_data.data:
         experience = experience_data.data[0]
-        return render_template('main/experience_details.html', experience=experience)
+        return render_template('main/experience_details.html', hotel=hotel, experience=experience)
     else:
-        return "Experience not found", 404
+        return abort(404, description="Experience not found")

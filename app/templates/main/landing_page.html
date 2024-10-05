@@ -1,117 +1,101 @@
 {% extends "base.html" %}
+{% from "main/shared_components.html" import header, footer %}
 
 {% block head %}
     {{ super() }}
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
-<div class="bg-gradient-to-r from-blue-100 to-green-100 min-h-screen">
-    <header class="bg-white shadow-md">
-        <div class="container mx-auto px-4 py-6 flex justify-between items-center">
-            <h1 class="text-3xl font-serif font-bold text-blue-800">{{ hotel.name }}</h1>
-            <nav class="space-x-6">
-                <a href="#about" class="text-gray-600 hover:text-blue-800 transition duration-300">About</a>
-                <a href="#experiences" class="text-gray-600 hover:text-blue-800 transition duration-300">Experiences</a>
-                <a href="#contact" class="text-gray-600 hover:text-blue-800 transition duration-300">Contact</a>
-            </nav>
-        </div>
-    </header>
+<div class="bg-gray-50 min-h-screen font-sans">
+    {{ header(hotel) }}
 
-    <main class="container mx-auto px-4">
-        <section id="hero" class="mt-8 relative">
-            <img src="{{ hotel.hero_url }}" alt="{{ hotel.name }}" class="w-full h-[600px] object-cover rounded-lg shadow-lg">
-            <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                <h2 class="text-5xl font-serif text-white text-center font-bold shadow-text">Welcome to {{ hotel.name }}</h2>
+    <main class="pt-16">
+        <section id="hero" class="relative h-screen">
+            <img src="{{ hotel.hero_url }}" alt="{{ hotel.name }}" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                <div class="text-center">
+                    <h1 class="text-6xl font-serif text-white font-bold mb-4 shadow-text">Welcome to {{ hotel.name }}</h1>
+                    <p class="text-xl text-white mb-8 shadow-text">Experience luxury and comfort in the heart of paradise</p>
+                    <a href="#experiences" class="bg-white text-blue-800 px-8 py-3 rounded-full font-bold hover:bg-blue-100 transition duration-300">Explore Experiences</a>
+                </div>
             </div>
         </section>
 
-        <section id="packages" class="mt-16">
-            <h2 class="text-3xl font-serif font-bold text-blue-800 mb-8">Our Packages</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                {% for package in packages %}
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105">
-                    {% if package.thumbnail %}
-                        <img src="{{ package.thumbnail }}" alt="{{ package.name }}" class="w-full h-64 object-cover">
-                    {% endif %}
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">{{ package.name }}</h3>
-                        {% if package.rating %}
-                            <div class="flex items-center mb-2">
-                                <span class="text-yellow-400 mr-1">★</span>
-                                <span class="text-gray-700">{{ package.rating|round(1) }}</span>
-                            </div>
+        <section id="about" class="py-20 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl font-serif font-bold text-blue-800 mb-8 text-center">About Our Hotel</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto text-center">
+                    Discover the perfect blend of comfort and luxury at {{ hotel.name }}. We offer unforgettable experiences and top-notch amenities to make your stay truly special.
+                </p>
+            </div>
+        </section>
+
+        <section id="experiences" class="py-20 bg-gray-100">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl font-serif font-bold text-blue-800 mb-12 text-center">Unforgettable Experiences</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
+                    {% for experience in experiences %}
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105">
+                        {% if experience.thumbnail %}
+                            <img src="{{ experience.thumbnail }}" alt="{{ experience.name }}" class="w-full h-64 object-cover">
                         {% endif %}
-                        <p class="text-gray-600 mb-4">{{ package.short_description }}</p>
-                        <a href="{{ url_for('main.experience_details', experience_id=package.id) }}" class="inline-block bg-blue-800 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300">View Details</a>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-serif font-semibold mb-2">{{ experience.name }}</h3>
+                            {% if experience.rating %}
+                                <div class="flex items-center mb-2">
+                                    <span class="text-yellow-400 mr-1">★</span>
+                                    <span class="text-gray-700">{{ experience.rating|round(1) }}</span>
+                                </div>
+                            {% endif %}
+                            <p class="text-gray-600 mb-4">{{ experience.short_description }}</p>
+                            <a href="{{ url_for('main.experience_details', hotel_slug=hotel.slug, experience_id=experience.id) }}" class="inline-block bg-blue-800 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition duration-300">Explore</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-20 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl font-serif font-bold text-blue-800 mb-12 text-center">Contact Us</h2>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <div>
+                        <form class="space-y-6">
+                            <input type="text" name="name" placeholder="Your Name" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
+                            <input type="email" name="email" placeholder="Your Email" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
+                            <textarea name="message" placeholder="Your Message" required class="w-full p-3 border border-gray-300 rounded-lg h-32 focus:outline-none focus:ring-2 focus:ring-blue-400"></textarea>
+                            <button type="submit" class="bg-blue-800 text-white px-8 py-3 rounded-full hover:bg-blue-700 transition duration-300">Send Message</button>
+                        </form>
+                    </div>
+                    <div>
+                        <div class="map-container rounded-lg overflow-hidden shadow-lg">
+                            {% if hotel.map_location %}
+                                {% set embed_url = hotel.map_location.replace('https://maps.app.goo.gl/', 'https://www.google.com/maps/embed?pb=') %}
+                                <iframe src="{{ embed_url }}" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            {% else %}
+                                <p class="text-gray-600">Map location not available</p>
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
-                {% endfor %}
-            </div>
-        </section>
-
-        <section id="experiences" class="mt-16">
-            <h2 class="text-3xl font-serif font-bold text-blue-800 mb-8">Unforgettable Experiences</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                {% for experience in experiences %}
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105">
-                    {% if experience.thumbnail %}
-                        <img src="{{ experience.thumbnail }}" alt="{{ experience.name }}" class="w-full h-64 object-cover">
-                    {% endif %}
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">{{ experience.name }}</h3>
-                        {% if experience.rating %}
-                            <div class="flex items-center mb-2">
-                                <span class="text-yellow-400 mr-1">★</span>
-                                <span class="text-gray-700">{{ experience.rating|round(1) }}</span>
-                            </div>
-                        {% endif %}
-                        <p class="text-gray-600 mb-4">{{ experience.short_description }}</p>
-                        <a href="{{ url_for('main.experience_details', experience_id=experience.id) }}" class="inline-block bg-blue-800 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300">Explore</a>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-        </section>
-
-        <section id="location-contact" class="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <div id="map">
-                <h2 class="text-3xl font-serif font-bold text-blue-800 mb-4">Our Location</h2>
-                <div class="map-container rounded-lg overflow-hidden shadow-lg">
-                    {% if hotel.map_location %}
-                        {% set embed_url = hotel.map_location.replace('https://maps.app.goo.gl/', 'https://www.google.com/maps/embed?pb=') %}
-                        <iframe src="{{ embed_url }}" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    {% else %}
-                        <p class="text-gray-600">Map location not available</p>
-                    {% endif %}
-                </div>
-            </div>
-
-            <div id="contact">
-                <h2 class="text-3xl font-serif font-bold text-blue-800 mb-4">Contact Us</h2>
-                <form class="space-y-4">
-                    <input type="text" name="name" placeholder="Your Name" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
-                    <input type="email" name="email" placeholder="Your Email" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
-                    <textarea name="message" placeholder="Your Message" required class="w-full p-3 border border-gray-300 rounded-lg h-32 focus:outline-none focus:ring-2 focus:ring-blue-400"></textarea>
-                    <button type="submit" class="bg-blue-800 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition duration-300">Send Message</button>
-                </form>
             </div>
         </section>
     </main>
 
-    <footer class="bg-blue-800 text-white mt-16 py-8">
-        <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
-            <p class="text-center md:text-left mb-4 md:mb-0">&copy; 2023 {{ hotel.name }}. All rights reserved.</p>
-            <div class="social-links flex space-x-4">
-                <a href="{{ hotel.facebook }}" class="hover:text-blue-300 transition duration-300"><i class="fab fa-facebook-f"></i></a>
-                <a href="{{ hotel.instagram }}" class="hover:text-blue-300 transition duration-300"><i class="fab fa-instagram"></i></a>
-            </div>
-        </div>
-    </footer>
+    {{ footer(hotel) }}
 </div>
 
 <style>
+    body {
+        font-family: 'Roboto', sans-serif;
+    }
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Playfair Display', serif;
+    }
     .shadow-text {
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     }
