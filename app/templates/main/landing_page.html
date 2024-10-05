@@ -19,8 +19,17 @@
         <h2 class="text-2xl font-bold mb-4">Packages</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {% for package in packages %}
-            <div class="border border-gray-200 p-4 text-center">
+            <div class="border border-gray-200 p-4 rounded-lg shadow-md">
+                {% if package.thumbnail %}
+                    <img src="{{ package.thumbnail }}" alt="{{ package.name }}" class="w-full h-48 object-cover mb-4 rounded-t-lg">
+                {% endif %}
                 <h3 class="text-xl font-semibold mb-2">{{ package.name }}</h3>
+                {% if package.rating %}
+                    <div class="flex items-center mb-2">
+                        <span class="text-yellow-400 mr-1">★</span>
+                        <span class="text-gray-700">{{ package.rating|round(1) }}</span>
+                    </div>
+                {% endif %}
                 <p class="text-sm text-gray-600 mb-4">{{ package.short_description }}</p>
                 <a href="{{ url_for('main.experience_details', experience_id=package.id) }}" class="inline-block bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700">Details</a>
             </div>
@@ -32,8 +41,17 @@
         <h2 class="text-2xl font-bold mb-4">Experiences</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {% for experience in experiences %}
-            <div class="border border-gray-200 p-4 text-center">
+            <div class="border border-gray-200 p-4 rounded-lg shadow-md">
+                {% if experience.thumbnail %}
+                    <img src="{{ experience.thumbnail }}" alt="{{ experience.name }}" class="w-full h-48 object-cover mb-4 rounded-t-lg">
+                {% endif %}
                 <h3 class="text-xl font-semibold mb-2">{{ experience.name }}</h3>
+                {% if experience.rating %}
+                    <div class="flex items-center mb-2">
+                        <span class="text-yellow-400 mr-1">★</span>
+                        <span class="text-gray-700">{{ experience.rating|round(1) }}</span>
+                    </div>
+                {% endif %}
                 <p class="text-sm text-gray-600 mb-4">{{ experience.short_description }}</p>
                 <a href="{{ url_for('main.experience_details', experience_id=experience.id) }}" class="inline-block bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700">Details</a>
             </div>
@@ -46,8 +64,12 @@
             <div id="map">
                 <h2 class="text-2xl font-bold mb-4">Location</h2>
                 <div class="map-container">
-                    <!-- Replace with actual Google Maps embed code -->
-                    <iframe src="{{ hotel.map_location }}" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    {% if hotel.map_location %}
+                        {% set embed_url = hotel.map_location.replace('https://maps.app.goo.gl/', 'https://www.google.com/maps/embed?pb=') %}
+                        <iframe src="{{ embed_url }}" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    {% else %}
+                        <p>Map location not available</p>
+                    {% endif %}
                 </div>
             </div>
 

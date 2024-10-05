@@ -31,12 +31,3 @@ def experience_details(experience_id):
         return render_template('main/experience_details.html', experience=experience)
     else:
         return "Experience not found", 404
-    
-@main_bp.route('/booking/<int:experience_id>')
-def booking_page(experience_id):
-    experience_data = get_experience_by_id(experience_id)
-    if experience_data.data:
-        experience = experience_data.data[0]
-        return render_template('main/booking_page.html', experience=experience)
-    else:
-        return "Experience not found", 404

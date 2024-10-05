@@ -45,9 +45,24 @@
                 </div>
             {% endif %}
             {% if experience.payment_link %}
-                <a href="{{ url_for('main.booking_page', experience_id=experience.id) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                    Book Now
-                </a>
+                <div id="razorpay-button-container"></div>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        var script = document.createElement('script');
+                        script.src = 'https://checkout.razorpay.com/v1/payment-button.js';
+                        script.setAttribute('data-payment_button_id', '{{ experience.payment_link }}');
+                        script.onload = function() {
+                            var interval = setInterval(function() {
+                                var button = document.querySelector('.razorpay-payment-button');
+                                if (button) {
+                                    clearInterval(interval);
+                                    document.getElementById('razorpay-button-container').appendChild(button);
+                                }
+                            }, 100);
+                        };
+                        document.body.appendChild(script);
+                    });
+                </script>
             {% endif %}
         </div>
     </div>

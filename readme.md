@@ -18,9 +18,8 @@
         - base.html
         - main/
             - landing_page.html # extends the base
-            - experience_details.html 
-            - booking_form.html
-            - confirmation_page.html
+            - experience_details.html # extends the base
+            - booking_page.html # extends the base
     - routes/
         - __init__.py
         - main.py # will contain the route that will bring the data from the database to render the webpage
