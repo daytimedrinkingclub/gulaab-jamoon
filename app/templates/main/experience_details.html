@@ -79,20 +79,10 @@
                             {% endif %}
                         </ul>
                         {% if experience.payment_link %}
-                            <div id="razorpay-button-container" class="mt-6"></div>
-                            <script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="{{ experience.payment_link }}"></script>
-                            <script>
-                                document.addEventListener('DOMContentLoaded', function() {
-                                    var interval = setInterval(function() {
-                                        var button = document.querySelector('.razorpay-payment-button');
-                                        if (button) {
-                                            clearInterval(interval);
-                                            button.className = 'w-full bg-blue-800 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300 text-center';
-                                            document.getElementById('razorpay-button-container').appendChild(button);
-                                        }
-                                    }, 100);
-                                });
-                            </script>
+                        <div class="mt-2">
+                        <form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="{{ experience.payment_link }}" async> </script> </form>
+
+                        </div>
                         {% endif %}
                     </div>
                 </div>
