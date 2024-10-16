@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CraftX India - Experience as a Service</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#D4AF37",
+              secondary: "#000000",
+              accent: "#FFF8DC",
+            },
+            fontFamily: {
+              sans: ["Poppins", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      @keyframes growUp {
+        from {
+          transform: scaleY(0);
+        }
+        to {
+          transform: scaleY(1);
+        }
+      }
+      .grow-up {
+        animation: growUp 1.5s ease-out forwards;
+      }
+    </style>
+  </head>
+  <body class="font-sans bg-accent">
+    <header class="bg-white shadow-md">
+      <nav
+        class="container mx-auto px-4 py-4 flex justify-between items-center"
+      >
+        <a href="#" class="flex items-center">
+          <img
+            src="https://supabasekong-shipstation.badalhibadal.com/storage/v1/object/public/shipstation-websites/websites/craftx-india-v2Ab9-vO/assets/1729012294221-craftx_logo.jpg"
+            alt="CraftX Logo"
+            class="h-12 w-auto"
+          />
+        </a>
+        <div class="hidden md:flex space-x-6">
+          <a href="#about" class="text-secondary hover:text-primary">About</a>
+          <a href="#framework" class="text-secondary hover:text-primary"
+            >Our Framework</a
+          >
+          <a href="#services" class="text-secondary hover:text-primary"
+            >Services</a
+          >
+          <a href="#grow" class="text-secondary hover:text-primary"
+            >Grow With Us</a
+          >
+          <a href="#partners" class="text-secondary hover:text-primary"
+            >Partners</a
+          >
+          <a href="#contact" class="text-secondary hover:text-primary"
+            >Contact</a
+          >
+        </div>
+        <button
+          id="mobile-menu-button"
+          class="md:hidden text-secondary hover:text-primary"
+        >
+          <i class="fas fa-bars"></i>
+        </button>
+      </nav>
+      <div id="mobile-menu" class="hidden md:hidden bg-white py-2 px-4">
+        <a href="#about" class="block py-2 text-secondary hover:text-primary"
+          >About</a
+        >
+        <a
+          href="#framework"
+          class="block py-2 text-secondary hover:text-primary"
+          >Our Framework</a
+        >
+        <a href="#services" class="block py-2 text-secondary hover:text-primary"
+          >Services</a
+        >
+        <a href="#grow" class="block py-2 text-secondary hover:text-primary"
+          >Grow With Us</a
+        >
+        <a href="#partners" class="block py-2 text-secondary hover:text-primary"
+          >Partners</a
+        >
+        <a href="#contact" class="block py-2 text-secondary hover:text-primary"
+          >Contact</a
+        >
+      </div>
+    </header>
+
+    <main>
+      <section
+        id="hero"
+        class="relative h-screen flex items-center justify-center text-white"
+        style="
+          background-image: url('https://images.pexels.com/photos/672358/pexels-photo-672358.jpeg?cs=srgb&dl=landscape-nature-sky-672358.jpg&fm=jpg');
+          background-size: cover;
+          background-position: center;
+        "
+      >
+        <div class="absolute inset-0 bg-black opacity-50"></div>
+        <div class="relative z-10 text-center">
+          <h1 class="text-4xl md:text-6xl font-bold mb-4">
+            Experience as a Service
+          </h1>
+          <p class="text-xl md:text-2xl mb-8">
+            Intelligent Dynamic Experience Booking Platform
+          </p>
+          <a
+            href="#services"
+            class="bg-primary hover:bg-secondary text-white font-bold py-3 px-6 rounded-full transition duration-300"
+            >Explore Our Services</a
+          >
+        </div>
+      </section>
+
+      <section id="about" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+          <h2 class="text-3xl font-bold text-center mb-8 text-secondary">
+            About CraftX India
+          </h2>
+          <div class="text-center max-w-2xl mx-auto">
+            <p class="text-lg mb-4">
+              CraftX India is revolutionizing the travel industry by shifting
+              focus from destination-oriented to experience-oriented journeys.
+              We empower stays and tourism facilitators to provide curated,
+              personalized experiences, meeting the evolving demands of modern
+              travelers.
+            </p>
+            <p class="text-lg">
+              Our platform helps partners stay ahead in the experience-driven
+              market, crafting unforgettable moments and transforming the way
+              people travel.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="framework" class="py-16 bg-accent">
+        <div class="container mx-auto px-4">
+          <h2 class="text-3xl font-bold text-center mb-8 text-secondary">
+            Our Framework
+          </h2>
+          <div class="max-w-2xl mx-auto">
+            <h3 class="text-2xl font-semibold mb-4 text-secondary">
+              The CraftX User Journey
+            </h3>
+            <ul class="space-y-4">
+              <li>
+                <span class="font-semibold">Discover:</span>
+                <p>
+                  Users explore unique experiences tailored to their interests
+                  through our AI-powered recommendation system.
+                </p>
+              </li>
+              <li>
+                <span class="font-semibold">Plan:</span>
+                <p>
+                  Our intelligent system helps users create personalized
+                  itineraries, considering preferences, budget, and time
+                  constraints.
+                </p>
+              </li>
+              <li>
+                <span class="font-semibold">Book:</span>
+                <p>
+                  Seamless booking process for experiences, accommodations, and
+                  transportation, all in one place.
+                </p>
+              </li>
+              <li>
+                <span class="font-semibold">Experience:</span>
+                <p>
+                  Travelers immerse themselves in unforgettable moments, guided
+                  by our mobile companion app.
+                </p>
+              </li>
+              <li>
+                <span class="font-semibold">Share:</span>
+                <p>
+                  Users can easily share their experiences on social media and
+                  inspire others through our platform.
+                </p>
+              </li>
+              <li>
+                <span class="font-semibold">Reflect:</span>
+                <p>
+                  Post-trip surveys and analytics help improve future
+                  experiences and provide valuable insights to our partners.
+                </p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="services" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+          <h2 class="text-3xl font-bold text-center mb-12 text-secondary">
+            Our Services
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-accent rounded-lg shadow-md p-6">
+              <i class="fas fa-bus text-4xl text-primary mb-4"></i>
+              <h3 class="text-xl font-semibold mb-2 text-secondary">
+                Local Transportation
+              </h3>
+              <p class="text-secondary">
+                Efficient local transport options for seamless travel.
+              </p>
+            </div>
+            <div class="bg-accent rounded-lg shadow-md p-6">
+              <i class="fas fa-map-marked-alt text-4xl text-primary mb-4"></i>
+              <h3 class="text-xl font-semibold mb-2 text-secondary">
+                Sightseeing Packages
+              </h3>
+              <p class="text-secondary">
+                Curated packages to explore popular attractions.
+              </p>
+            </div>
+            <div class="bg-accent rounded-lg shadow-md p-6">
+              <i class="fas fa-landmark text-4xl text-primary mb-4"></i>
+              <h3 class="text-xl font-semibold mb-2 text-secondary">
+                Government Sightseeing Places
+              </h3>
+              <p class="text-secondary">
+                Access to historical and cultural government sites.
+              </p>
+            </div>
+            <div class="bg-accent rounded-lg shadow-md p-6">
+              <i class="fas fa-glass-cheers text-4xl text-primary mb-4"></i>
+              <h3 class="text-xl font-semibold mb-2 text-secondary">
+                Private Experiences
+              </h3>
+              <p class="text-secondary">
+                Exclusive, personalized experiences for discerning travelers.
+              </p>
+            </div>
+            <div class="bg-accent rounded-lg shadow-md p-6">
+              <i class="fas fa-users text-4xl text-primary mb-4"></i>
+              <h3 class="text-xl font-semibold mb-2 text-secondary">
+                Exclusive and Local Experiences
+              </h3>
+              <p class="text-secondary">
+                Unique local experiences that go beyond typical tourism.
+              </p>
+            </div>
+            <div class="bg-accent rounded-lg shadow-md p-6">
+              <i class="fas fa-suitcase text-4xl text-primary mb-4"></i>
+              <h3 class="text-xl font-semibold mb-2 text-secondary">
+                Travel Packages
+              </h3>
+              <p class="text-secondary">
+                Comprehensive travel packages for hassle-free journeys.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="grow" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+          <h2 class="text-3xl font-bold text-center mb-12 text-secondary">
+            Grow With CraftX
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-accent rounded-lg shadow-md p-6 text-center">
+              <i class="fas fa-chart-line text-5xl text-primary mb-4"></i>
+              <h3 class="text-xl font-semibold mb-2 text-secondary">
+                20% Increase
+              </h3>
+              <p class="text-secondary">in average booking value</p>
+              <div class="mt-4 h-32 flex items-end justify-center">
+                <div
+                  class="w-8 bg-primary mr-2 grow-up"
+                  style="height: 80%"
+                ></div>
+                <div class="w-8 bg-primary" style="height: 100%"></div>
+              </div>
+            </div>
+            <div class="bg-accent rounded-lg shadow-md p-6 text-center">
+              <i class="fas fa-tachometer-alt text-5xl text-primary mb-4"></i>
+              <h3 class="text-xl font-semibold mb-2 text-secondary">
+                10X Efficiency
+              </h3>
+              <p class="text-secondary">in Tourist advisory</p>
+              <div class="mt-4 h-32">
+                <canvas id="efficiencyChart"></canvas>
+              </div>
+            </div>
+            <div class="bg-accent rounded-lg shadow-md p-6 text-center">
+              <i class="fas fa-calendar-check text-5xl text-primary mb-4"></i>
+              <h3 class="text-xl font-semibold mb-2 text-secondary">
+                20% Increase
+              </h3>
+              <p class="text-secondary">in number of bookings</p>
+              <div class="mt-4 h-32 flex items-end justify-center">
+                <div class="w-8 bg-primary mr-2" style="height: 80%"></div>
+                <div class="w-8 bg-primary grow-up" style="height: 100%"></div>
+              </div>
+            </div>
+            <div class="bg-accent rounded-lg shadow-md p-6 text-center">
+              <i class="fas fa-user-check text-5xl text-primary mb-4"></i>
+              <h3 class="text-xl font-semibold mb-2 text-secondary">
+                10% Increase
+              </h3>
+              <p class="text-secondary">in retention rate</p>
+              <div class="mt-4 h-32">
+                <canvas id="retentionChart"></canvas>
+              </div>
+            </div>
+            <div class="bg-accent rounded-lg shadow-md p-6 text-center">
+              <i class="fas fa-smile-beam text-5xl text-primary mb-4"></i>
+              <h3 class="text-xl font-semibold mb-2 text-secondary">
+                Great Improvement
+              </h3>
+              <p class="text-secondary">in customer satisfaction</p>
+              <div class="mt-4 h-32 flex items-center justify-center">
+                <i class="fas fa-star text-primary text-4xl mr-2"></i>
+                <i class="fas fa-star text-primary text-4xl mr-2"></i>
+                <i class="fas fa-star text-primary text-4xl mr-2"></i>
+                <i class="fas fa-star text-primary text-4xl mr-2"></i>
+                <i class="fas fa-star-half-alt text-primary text-4xl"></i>
+              </div>
+            </div>
+            <div class="bg-accent rounded-lg shadow-md p-6 text-center">
+              <i class="fas fa-search text-5xl text-primary mb-4"></i>
+              <h3 class="text-xl font-semibold mb-2 text-secondary">
+                5X Increase
+              </h3>
+              <p class="text-secondary">in SEO performance</p>
+              <div class="mt-4 h-32">
+                <canvas id="seoChart"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="partners" class="py-16 bg-accent">
+        <div class="container mx-auto px-4">
+          <h2 class="text-3xl font-bold text-center mb-12 text-secondary">
+            Our Partners
+          </h2>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div class="flex flex-col items-center justify-center">
+              <i class="fas fa-hotel text-5xl text-primary mb-4"></i>
+              <h3 class="text-xl font-semibold text-secondary">Stays</h3>
+            </div>
+            <div class="flex flex-col items-center justify-center">
+              <i class="fas fa-bus text-5xl text-primary mb-4"></i>
+              <h3 class="text-xl font-semibold text-secondary">
+                Bus Operators
+              </h3>
+            </div>
+            <div class="flex flex-col items-center justify-center">
+              <i class="fas fa-user-friends text-5xl text-primary mb-4"></i>
+              <h3 class="text-xl font-semibold text-secondary">
+                Travel Influencers
+              </h3>
+            </div>
+            <div class="flex flex-col items-center justify-center">
+              <i class="fas fa-bed text-5xl text-primary mb-4"></i>
+              <h3 class="text-xl font-semibold text-secondary">Hostels</h3>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="cta" class="py-16 bg-primary">
+        <div class="container mx-auto px-4 text-center">
+          <h2 class="text-3xl font-bold mb-4 text-white">
+            Ready to Transform Your Travel Business?
+          </h2>
+          <p class="text-xl mb-8 text-white">
+            Join CraftX India and start offering unforgettable experiences to
+            your customers.
+          </p>
+          <a
+            href="#contact"
+            class="bg-white text-primary hover:bg-secondary hover:text-white font-bold py-3 px-6 rounded-full transition duration-300"
+            >Get Started Today</a
+          >
+        </div>
+      </section>
+
+      <section id="contact" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+          <h2 class="text-3xl font-bold text-center mb-12 text-secondary">
+            Contact Us
+          </h2>
+          <div class="flex flex-col items-center">
+            <div class="mb-8 text-center">
+              <h3 class="text-2xl font-semibold mb-4 text-secondary">
+                Get in Touch
+              </h3>
+              <p class="mb-4 max-w-2xl">
+                We'd love to hear from you. Whether you have a question about
+                our services, pricing, or anything else, our team is ready to
+                assist you.
+              </p>
+            </div>
+            <div class="flex flex-col items-center mb-8">
+              <div class="mb-4 text-center">
+                <h4 class="font-semibold text-secondary text-xl mb-2">
+                  Address
+                </h4>
+                <p>17th Main Road, HSR Sector 6, Bangalore, India 560068</p>
+              </div>
+              <div class="mb-4 text-center">
+                <h4 class="font-semibold text-secondary text-xl mb-2">Phone</h4>
+                <p>+91 9972368454</p>
+              </div>
+              <div class="text-center">
+                <h4 class="font-semibold text-secondary text-xl mb-2">Email</h4>
+                <p>info@craft-x.in</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bg-secondary text-white py-8">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-wrap justify-between">
+          <div class="w-full md:w-1/4 mb-6 md:mb-0">
+            <h3 class="text-xl font-semibold mb-4">CraftX India</h3>
+            <p>Transforming travel experiences one journey at a time.</p>
+          </div>
+          <div class="w-full md:w-1/4 mb-6 md:mb-0">
+            <h3 class="text-xl font-semibold mb-4">Quick Links</h3>
+            <ul>
+              <li><a href="#about" class="hover:text-primary">About</a></li>
+              <li>
+                <a href="#services" class="hover:text-primary">Services</a>
+              </li>
+              <li>
+                <a href="#partners" class="hover:text-primary">Partners</a>
+              </li>
+              <li><a href="#contact" class="hover:text-primary">Contact</a></li>
+            </ul>
+          </div>
+          <div class="w-full md:w-1/4 mb-6 md:mb-0">
+            <h3 class="text-xl font-semibold mb-4">Follow Us</h3>
+            <div class="flex space-x-4">
+              <a
+                href="https://www.instagram.com/gulaabjamoonexperiences/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="hover:text-primary w-10 h-10 rounded-full bg-white flex items-center justify-center transition-colors duration-300"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="text-secondary"
+                >
+                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                  <path
+                    d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"
+                  ></path>
+                  <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+                </svg>
+              </a>
+              <a
+                href="https://www.linkedin.com/company/gulaab-jamoon-experiences/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="hover:text-primary w-10 h-10 rounded-full bg-white flex items-center justify-center transition-colors duration-300"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="text-secondary"
+                >
+                  <path
+                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+                  ></path>
+                  <rect width="4" height="12" x="2" y="9"></rect>
+                  <circle cx="4" cy="4" r="2"></circle>
+                </svg>
+              </a>
+              <a
+                href="https://www.youtube.com/@Gulaab.Jamoon"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="hover:text-primary w-10 h-10 rounded-full bg-white flex items-center justify-center transition-colors duration-300"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="text-secondary"
+                >
+                  <path
+                    d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"
+                  ></path>
+                  <path d="m10 15 5-3-5-3z"></path>
+                </svg>
+              </a>
+              <a
+                href="https://www.facebook.com/gulaabjamoonexperiences"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="hover:text-primary w-10 h-10 rounded-full bg-white flex items-center justify-center transition-colors duration-300"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="text-secondary"
+                >
+                  <path
+                    d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+                  ></path>
+                </svg>
+              </a>
+              <a
+                href="https://twitter.com/gulaab_ja_moon"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="hover:text-primary w-10 h-10 rounded-full bg-white flex items-center justify-center transition-colors duration-300"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="text-secondary"
+                >
+                  <path
+                    d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"
+                  ></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div class="w-full md:w-1/4">
+            <h3 class="text-xl font-semibold mb-4">Newsletter</h3>
+            <form>
+              <input
+                type="email"
+                placeholder="Enter your email"
+                class="w-full px-3 py-2 bg-white text-secondary rounded-md mb-2"
+              />
+              <button
+                type="submit"
+                class="bg-primary hover:bg-white hover:text-primary text-white font-bold py-2 px-4 rounded-full transition duration-300"
+              >
+                Subscribe
+              </button>
+            </form>
+          </div>
+        </div>
+        <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+          <p>&copy; 2024 CraftX India. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const mobileMenuButton = document.getElementById("mobile-menu-button");
+        const mobileMenu = document.getElementById("mobile-menu");
+
+        mobileMenuButton.addEventListener("click", function () {
+          mobileMenu.classList.toggle("hidden");
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute("href")).scrollIntoView({
+              behavior: "smooth",
+            });
+            // Close mobile menu if open
+            mobileMenu.classList.add("hidden");
+          });
+        });
+
+        // Charts
+        const efficiencyChart = new Chart(
+          document.getElementById("efficiencyChart"),
+          {
+            type: "bar",
+            data: {
+              labels: ["Before", "After"],
+              datasets: [
+                {
+                  data: [1, 10],
+                  backgroundColor: ["#000000", "#D4AF37"],
+                },
+              ],
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              scales: {
+                y: {
+                  beginAtZero: true,
+                },
+              },
+              plugins: {
+                legend: {
+                  display: false,
+                },
+              },
+            },
+          }
+        );
+
+        const retentionChart = new Chart(
+          document.getElementById("retentionChart"),
+          {
+            type: "doughnut",
+            data: {
+              labels: ["Retained", "Lost"],
+              datasets: [
+                {
+                  data: [90, 10],
+                  backgroundColor: ["#D4AF37", "#000000"],
+                },
+              ],
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: {
+                  display: false,
+                },
+              },
+            },
+          }
+        );
+
+        const seoChart = new Chart(document.getElementById("seoChart"), {
+          type: "line",
+          data: {
+            labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+            datasets: [
+              {
+                data: [1, 2, 3, 3.5, 4, 5],
+                borderColor: "#D4AF37",
+                tension: 0.1,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              y: {
+                beginAtZero: true,
+              },
+            },
+            plugins: {
+              legend: {
+                display: false,
+              },
+            },
+          },
+        });
+      });
+    </script>
+  </body>
+</html>

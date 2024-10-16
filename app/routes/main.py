@@ -12,6 +12,10 @@ def extract_location_query(url):
 
 main_bp = Blueprint('main', __name__)
 
+@main_bp.route('/')
+def index():
+    return render_template('main/index.html')
+
 @main_bp.route('/<hotel_slug>')
 def hotel_page(hotel_slug):
     hotel_data = get_hotel_by_slug(hotel_slug)
